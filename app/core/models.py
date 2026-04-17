@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
     BaseUserManager,
 )
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
@@ -52,3 +53,56 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
     USERNAME_FIELD = "email"
+
+
+class Book(models.Model):
+    """Book Model"""
+
+    AGE_GROUP_CHOICES = [
+        ("children", "Children"),
+        ("young_adult", "Young Adult"),
+        ("adult", "Adult"),
+    ]
+    contributor = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="contributed_books"
+    )
+    isbn = models.CharField(max_length=20, unique=True, null=True, blank=True)
+    book_name = models.CharField(max_length=200)
+    author = models.CharField(max_length=150)
+    summary = models.TextField(blank=True)
+    published_date = models.DateField(null=True, blank=True)
+    genre = models.CharField(max_length=50)
+    age_group = models.CharField(max_length=50, choices=AGE_GROUP_CHOICES, blank=True)
+    cover_image = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.book_name
+
+
+class Review(models.Model):
+    """Review Model"""
+
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="reviews")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
+    rating = models.SmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    review_text = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("book", "user")
+
+
+class UserPrefrence(models.Model):
+    """User prefrence Model."""
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="preferences")
+    genre = models.CharField(max_length=50)
+    score = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = ("user", "genre")

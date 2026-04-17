@@ -1,0 +1,37 @@
+class UserPreference(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='preferences')
+    genre = models.CharField(max_length=50)
+    score = models.IntegerField(default=0)  # increases with interactions
+
+    class Meta:
+        unique_together = ('user', 'genre')  # one row per genre per user
+
+Then track interactions on the Book model:
+pythonclass Book(models.Model):
+    ...
+    genre = models.CharField(max_length=50)
+
+class UserBookInteraction(models.Model):
+    INTERACTION_CHOICES = [
+        ('view', 'Viewed'),
+        ('like', 'Liked'),
+        ('search', 'Searched'),
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    interaction = models.CharField(max_length=10, choices=INTERACTION_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+Then update preference score on each interaction:
+pythondef update_preference(user, book, interaction):
+    SCORES = {
+        'view': 1,
+        'search': 2,
+        'like': 5,      # liking weighs more
+    }
+    pref, _ = UserPreference.objects.get_or_create(user=user, genre=book.genre)
+    pref.score += SCORES[interaction]
+    pref.save()
+
+To get recommendations, just order by score:
+pythontop_genres = UserPreference.objects.filter(user=user).order_by('-score')
