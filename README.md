@@ -114,13 +114,12 @@ Access the API documentation at `http://localhost:8000/api/docs/`
 
 ### Environment Variables
 
-| Variable        | Description                           |
-| --------------- | ------------------------------------- |
-| `DB_NAME`       | PostgreSQL database name              |
-| `DB_USER`       | PostgreSQL username                   |
-| `DB_PASS`       | PostgreSQL password                   |
-| `SECRET_KEY`    | Django secret key                     |
-| `ALLOWED_HOSTS` | Comma separated list of allowed hosts |
+| Variable     | Description              |
+| ------------ | ------------------------ |
+| `DB_NAME`    | PostgreSQL database name |
+| `DB_USER`    | PostgreSQL username      |
+| `DB_PASS`    | PostgreSQL password      |
+| `SECRET_KEY` | Django secret key        |
 
 ---
 

@@ -192,6 +192,7 @@ class PrivateBooksApiTest(TestCase):
         res = self.client.delete(url)
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
         self.assertTrue(Book.objects.filter(id=book.id).exists())
+
     def test_upload_cover_image_success(self):
         """Test uploading a cover image for a book."""
         book = create_book(user=self.user)
