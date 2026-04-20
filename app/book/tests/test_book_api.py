@@ -12,6 +12,10 @@ from datetime import date
 from rest_framework import status
 from rest_framework.test import APIClient
 
+from django.core.files.uploadedfile import SimpleUploadedFile
+from PIL import Image
+import io
+
 User = get_user_model()
 
 BOOK_URL = reverse("book:book-list")
@@ -120,7 +124,7 @@ class PrivateBooksApiTest(TestCase):
         res = self.client.get(BOOK_URL, {"my_books": True})
 
         books = Book.objects.filter(contributor=self.user).order_by("-id")
-        serializer = BookSerializer(books, many=True)
+        serializer = BookSerializer(books, many=True, context={"request": res.wsgi_request})
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
@@ -145,7 +149,6 @@ class PrivateBooksApiTest(TestCase):
 
     def test_full_update(self):
         """Test full update success."""
-
         book = create_book(user=self.user)
 
         payload = {
@@ -155,7 +158,6 @@ class PrivateBooksApiTest(TestCase):
             "published_date": date(1997, 7, 26),
             "genre": "Fantasy",
             "age_group": "adult",
-            "cover_image": "harry_potter_2.jpg",
         }
 
         url = book_detail_url(book.id)
@@ -190,3 +192,24 @@ class PrivateBooksApiTest(TestCase):
         res = self.client.delete(url)
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
         self.assertTrue(Book.objects.filter(id=book.id).exists())
+    def test_upload_cover_image_success(self):
+        """Test uploading a cover image for a book."""
+        book = create_book(user=self.user)
+        url = book_detail_url(book.id)
+
+        img = Image.new('RGB', (100, 100), color='red')
+        img_io = io.BytesIO()
+        img.save(img_io, format='JPEG')
+        img_io.seek(0)
+
+        image = SimpleUploadedFile(
+            name='test_image.jpg',
+            content=img_io.read(),
+            content_type='image/jpeg'
+        )
+
+        res = self.client.patch(url, {'cover_image': image}, format='multipart')
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        book.refresh_from_db()
+        self.assertTrue(book.cover_image)
