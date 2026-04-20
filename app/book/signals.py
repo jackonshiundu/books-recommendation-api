@@ -8,7 +8,7 @@ def update_prefrences_on_review(sender, instance, created, **kwargs):
     if created and instance.rating > 3:
         obj, _ = UserPrefrence.objects.get_or_create(
             user=instance.user,
-            gener=instance.book.gener,
+            genre=instance.book.genre,
         )
 
         obj.score += 1
@@ -17,11 +17,10 @@ def update_prefrences_on_review(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Book)
 def update_preferences_on_contribution(sender, instance, created, **kwargs):
-    if created and instance.rating > 3:
+    if created:
         obj, _ = UserPrefrence.objects.get_or_create(
-            user=instance.user,
-            gener=instance.book.gener,
+            user=instance.contributor,
+            genre=instance.genre,
         )
-
         obj.score += 1
         obj.save()

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "core",
     "rest_framework",
     "rest_framework.authtoken",
+    "book.apps.BookConfig",
     "drf_spectacular",
 ]
 

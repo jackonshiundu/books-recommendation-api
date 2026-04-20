@@ -1,0 +1,203 @@
+[
+  {
+    "book_name": "Atomic Habits",
+    "author": "James Clear",
+    "genre": "Self Help",
+    "age_group": "adult",
+    "summary": "A guide to building good habits and breaking bad ones.",
+    "published_date": "2018-10-16",
+    "isbn": "9780735211292",
+    "cover_image": "atomic_habits.jpg"
+  },
+  {
+    "book_name": "The Alchemist",
+    "author": "Paulo Coelho",
+    "genre": "Fiction",
+    "age_group": "adult",
+    "summary": "A shepherd travels in search of his destiny.",
+    "published_date": "1988-01-01",
+    "isbn": "9780061122415",
+    "cover_image": "alchemist.jpg"
+  },
+  {
+    "book_name": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "age_group": "children",
+    "summary": "A hobbit embarks on an unexpected journey.",
+    "published_date": "1937-09-21",
+    "isbn": "9780547928227",
+    "cover_image": "hobbit.jpg"
+  },
+  {
+    "book_name": "1984",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "age_group": "adult",
+    "summary": "A chilling depiction of a totalitarian regime.",
+    "published_date": "1949-06-08",
+    "isbn": "9780451524935",
+    "cover_image": "1984.jpg"
+  },
+  {
+    "book_name": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "age_group": "adult",
+    "summary": "A story of racial injustice in the Deep South.",
+    "published_date": "1960-07-11",
+    "isbn": "9780061120084",
+    "cover_image": "mockingbird.jpg"
+  },
+
+  {
+    "book_name": "Rich Dad Poor Dad",
+    "author": "Robert Kiyosaki",
+    "genre": "Finance",
+    "age_group": "adult",
+    "summary": "Lessons on money and investing.",
+    "published_date": "1997-04-01",
+    "isbn": "9781612680194",
+    "cover_image": "rich_dad.jpg"
+  },
+  {
+    "book_name": "The Power of Now",
+    "author": "Eckhart Tolle",
+    "genre": "Self Help",
+    "age_group": "adult",
+    "summary": "A guide to spiritual enlightenment.",
+    "published_date": "1997-01-01",
+    "isbn": "9781577314806",
+    "cover_image": "power_now.jpg"
+  },
+  {
+    "book_name": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "genre": "Fiction",
+    "age_group": "young_adult",
+    "summary": "A teenager’s journey through alienation.",
+    "published_date": "1951-07-16",
+    "isbn": "9780316769488",
+    "cover_image": "catcher.jpg"
+  },
+  {
+    "book_name": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "genre": "History",
+    "age_group": "adult",
+    "summary": "A brief history of humankind.",
+    "published_date": "2011-01-01",
+    "isbn": "9780062316097",
+    "cover_image": "sapiens.jpg"
+  },
+  {
+    "book_name": "The Lean Startup",
+    "author": "Eric Ries",
+    "genre": "Business",
+    "age_group": "adult",
+    "summary": "A method for building successful startups.",
+    "published_date": "2011-09-13",
+    "isbn": "9780307887894",
+    "cover_image": "lean_startup.jpg"
+  },
+  {
+    "book_name": "Deep Work",
+    "author": "Cal Newport",
+    "genre": "Productivity",
+    "age_group": "adult",
+    "summary": "Focus-driven success strategies.",
+    "published_date": "2016-01-05",
+    "isbn": "9781455586691",
+    "cover_image": "deep_work.jpg"
+  },
+  {
+    "book_name": "Think and Grow Rich",
+    "author": "Napoleon Hill",
+    "genre": "Self Help",
+    "age_group": "adult",
+    "summary": "Principles for achieving success.",
+    "published_date": "1937-01-01",
+    "isbn": "9781585424337",
+    "cover_image": "think_rich.jpg"
+  },
+  {
+    "book_name": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Fiction",
+    "age_group": "adult",
+    "summary": "A story of wealth and illusion.",
+    "published_date": "1925-04-10",
+    "isbn": "9780743273565",
+    "cover_image": "gatsby.jpg"
+  },
+  {
+    "book_name": "Harry Potter and the Chamber of Secrets",
+    "author": "J.K. Rowling",
+    "genre": "Fantasy",
+    "age_group": "children",
+    "summary": "Harry returns to Hogwarts to face a new danger.",
+    "published_date": "1998-07-02",
+    "isbn": "9780439064873",
+    "cover_image": "hp2.jpg"
+  },
+  {
+    "book_name": "The 7 Habits of Highly Effective People",
+    "author": "Stephen Covey",
+    "genre": "Self Help",
+    "age_group": "adult",
+    "summary": "Habits for personal and professional success.",
+    "published_date": "1989-01-01",
+    "isbn": "9780743269513",
+    "cover_image": "7habits.jpg"
+  },
+  {
+    "book_name": "Start with Why",
+    "author": "Simon Sinek",
+    "genre": "Business",
+    "age_group": "adult",
+    "summary": "Leaders inspire by starting with why.",
+    "published_date": "2009-10-29",
+    "isbn": "9781591846444",
+    "cover_image": "start_with_why.jpg"
+  },
+  {
+    "book_name": "The Subtle Art of Not Giving a F*ck",
+    "author": "Mark Manson",
+    "genre": "Self Help",
+    "age_group": "adult",
+    "summary": "A counterintuitive approach to living a good life.",
+    "published_date": "2016-09-13",
+    "isbn": "9780062457714",
+    "cover_image": "subtle_art.jpg"
+  },
+  {
+    "book_name": "Zero to One",
+    "author": "Peter Thiel",
+    "genre": "Business",
+    "age_group": "adult",
+    "summary": "Notes on startups and innovation.",
+    "published_date": "2014-09-16",
+    "isbn": "9780804139298",
+    "cover_image": "zero_to_one.jpg"
+  },
+  {
+    "book_name": "Educated",
+    "author": "Tara Westover",
+    "genre": "Memoir",
+    "age_group": "adult",
+    "summary": "A memoir about education and self-invention.",
+    "published_date": "2018-02-20",
+    "isbn": "9780399590504",
+    "cover_image": "educated.jpg"
+  },
+  {
+    "book_name": "The Four Agreements",
+    "author": "Don Miguel Ruiz",
+    "genre": "Self Help",
+    "age_group": "adult",
+    "summary": "A practical guide to personal freedom.",
+    "published_date": "1997-01-01",
+    "isbn": "9781878424310",
+    "cover_image": "four_agreements.jpg"
+  }
+]
