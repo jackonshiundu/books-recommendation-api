@@ -24,7 +24,10 @@ RUN apk add --update --no-cache postgresql-client && \
     if [ "$DEV"='true' ]; \
         then pip install -r /tmp/requirements.dev.txt; fi && \
     apk del .tmp-build-deps && \
-    adduser --disabled-password --no-create-home django-user 
+    mkdir -p /app/media/covers && \    
+    adduser --disabled-password --no-create-home django-user &&\
+    chown -R django-user:django-user /app/media
+
 
 USER django-user
 
