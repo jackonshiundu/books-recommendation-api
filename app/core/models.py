@@ -73,7 +73,7 @@ class Book(models.Model):
     published_date = models.DateField(null=True, blank=True)
     genre = models.CharField(max_length=50)
     age_group = models.CharField(max_length=50, choices=AGE_GROUP_CHOICES, blank=True)
-    cover_image = models.CharField(max_length=255, blank=True)
+    cover_image = models.ImageField(upload_to="covers/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

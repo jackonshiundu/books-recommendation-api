@@ -44,6 +44,8 @@ class ReviewDetailSerializer(ReviewSerializer):
 class BookSerializer(serializers.ModelSerializer):
     """Boook Data serializer"""
 
+    cover_image = serializers.ImageField(required=False)
+
     class Meta:
         model = Book
         fields = [

@@ -17,6 +17,7 @@ from .serializers import (
 )
 
 from rest_framework.exceptions import PermissionDenied, ValidationError
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
@@ -45,6 +46,7 @@ class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     authentication_classes = [TokenAuthentication]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def get_permissions(self):
         """
@@ -73,30 +75,69 @@ class BookViewSet(viewsets.ModelViewSet):
             "-avg_rating"
         )
 
-        queryset = Book.objects.all()
-
         my_books = self.request.query_params.get("my_books")
         recommended = self.request.query_params.get("recommended")
-        if my_books:
-            queryset = queryset.filter(contributor=self.request.user)
-
-        elif recommended:
-            # genres from books they contributed
+        if my_books and recommended:
+            # both params — return user's books + personalized recommendations
             contributed_genres = Book.objects.filter(
                 contributor=self.request.user
             ).values_list("genre", flat=True)
 
-            # genres from books they rated above 3
             rated_genres = Review.objects.filter(
-                user=self.request.user, rating__gt=3
+                user=self.request.user, rating__gt=4
             ).values_list("book__genre", flat=True)
 
-            # combine both genre sources and remove duplicates
             from itertools import chain
 
-            all_genres = set(chain(contributed_genres, rated_genres))
+            user_genres = set(chain(contributed_genres, rated_genres))
 
-            queryset = queryset.filter(genre__in=all_genres)
+            high_rated_books = Book.objects.annotate(
+                avg_rating=Avg("reviews__rating")
+            ).filter(avg_rating__gte=4)
+
+            # user's own books
+            my_books_qs = queryset.filter(contributor=self.request.user)
+
+            # recommended in genre
+            in_genre = high_rated_books.filter(genre__in=user_genres)
+
+            # recommended outside genre
+            outside_genre = high_rated_books.exclude(genre__in=user_genres)
+
+            # combine — my books first, then in genre, then outside genre
+            queryset = list(my_books_qs) + list(in_genre) + list(outside_genre)
+
+        elif my_books:
+            queryset = queryset.filter(contributor=self.request.user)
+
+        elif recommended:
+            contributed_genres = Book.objects.filter(
+                contributor=self.request.user
+            ).values_list("genre", flat=True)
+
+            rated_genres = Review.objects.filter(
+                user=self.request.user, rating__gt=4
+            ).values_list("book__genre", flat=True)
+
+            from itertools import chain
+
+            user_genres = set(chain(contributed_genres, rated_genres))
+
+            high_rated_books = Book.objects.annotate(
+                avg_rating=Avg("reviews__rating")
+            ).filter(avg_rating__gte=4)
+
+            in_genre = high_rated_books.filter(genre__in=user_genres)
+            outside_genre = high_rated_books.exclude(genre__in=user_genres)
+
+            queryset = list(in_genre) + list(outside_genre)
+
+        else:
+            queryset = queryset.filter(avg_rating__gte=4)
+            if not queryset.exists():
+                queryset = Book.objects.annotate(
+                    avg_rating=Avg("reviews__rating")
+                ).order_by("-avg_rating")
 
         return queryset
 

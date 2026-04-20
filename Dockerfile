@@ -16,7 +16,10 @@ RUN apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-build-deps \
         build-base \
         postgresql-dev \
-        musl-dev && \
+        musl-dev \
+        jpeg-dev \
+        zlib-dev \
+        libffi-dev && \
     pip install -r /tmp/requirements.txt && \
     if [ "$DEV"='true' ]; \
         then pip install -r /tmp/requirements.dev.txt; fi && \
