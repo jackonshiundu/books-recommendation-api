@@ -28,7 +28,7 @@ The Books Recommendation API is a community-driven platform where contributors c
 - **File Storage:** Local (development), -> optional AWS S3 (production)
 - **Containerization:** Docker, Docker Compose
 - **API Documentation:** drf-spectacular (Swagger)
-- **Server:** Gunicorn + Nginx
+- **Server:** Gunicorn
 
 ---
 
