@@ -30,6 +30,9 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="apischema"),
         name="apidocs",
     ),
-    path("api/v1/user", include("user.urls")),
+    path("api/v1/user/", include("user.urls")),
     path("api/v1/book/", include("book.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
