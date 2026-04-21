@@ -72,6 +72,10 @@ The Books Recommendation API is a community-driven platform where contributors c
 
 ---
 
+## Database Schema
+
+![ER Diagram](assets/er_diagram.png)
+
 ## Recommendation Engine
 
 ### Stage 1 — Genre & Preference Matching (Current)
@@ -110,7 +114,7 @@ Clone the repository, create a `.env` file with the required environment variabl
 docker compose up -d --build
 ```
 
-Access the API documentation at `http://localhost:8000/api/docs/`
+Access the API documentation with swagger at `http://localhost:8000/api/docs/`
 
 ### Environment Variables
 
@@ -119,9 +123,11 @@ Access the API documentation at `http://localhost:8000/api/docs/`
 | `DB_NAME`    | PostgreSQL database name |
 | `DB_USER`    | PostgreSQL username      |
 | `DB_PASS`    | PostgreSQL password      |
+| `DB_PORT`    | PostgreSQL Port          |
+| `DB_HOST`    | PostgreSQL host name     |
 | `SECRET_KEY` | Django secret key        |
 
----
+## DB_HOST=dpg-d7jh1bjbc2fs73c1e160-a
 
 ## Running Tests
 
@@ -134,3 +140,12 @@ docker compose run --rm app sh -c "python manage.py test"
 ## License
 
 This project is open source and available under the MIT License.
+
+## Contributing
+
+This project is open for contributions! If you'd like to build on top of it, feel free to fork the repository and submit a pull request.
+
+### Getting Started
+
+1. Fork the repository
+2. Clone your fork:
