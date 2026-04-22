@@ -137,10 +137,6 @@ docker compose run --rm app sh -c "python manage.py test"
 
 ---
 
-## License
-
-This project is open source and available under the MIT License.
-
 ## Contributing
 
 This project is open for contributions! If you'd like to build on top of it, feel free to fork the repository and submit a pull request.
