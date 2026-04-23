@@ -16,7 +16,6 @@ class CreateUser(generics.CreateAPIView):
     "Create a new user."
 
     serializer_class = UserSerializer
-    serializer_class = UserSerializer
 
 
 @extend_schema(tags=["User Management"])
